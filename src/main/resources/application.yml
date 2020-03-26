@@ -1,0 +1,45 @@
+server:
+  port: 12014
+
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/bcca?characterEncoding=utf8&useSSL=false&useUnicode=true&serverTimezone=GMT%2B8
+#    username: root
+#    password: 123456
+#    hikari:
+#      read-only: true
+# MyBatisPlus
+mybatisPlus:
+  mapperLocations: classpath:/mappers/**/*.xml
+  type-aliases-package: com.example.demo1.entity
+  global-config:
+    db-config:
+      id-type: uuid
+      logic-delete-value: -1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: false
+# self defined
+hikari:
+  master:
+     driver-class-name: com.mysql.cj.jdbc.Driver
+     jdbc-url: jdbc:mysql://localhost:3306/bcca?characterEncoding=utf8&useSSL=false&useUnicode=true&serverTimezone=GMT%2B8
+     username: root
+     password: 123456
+     maximum-pool-size: 20
+     pool-name: master
+     connection-timeout: 30000
+     idle-timeout: 600000
+     max-lifetime: 1765000
+  slave:
+     driver-class-name: com.mysql.cj.jdbc.Driver
+     jdbc-url: jdbc:mysql://localhost:3306/test?characterEncoding=utf8&useSSL=false&useUnicode=true&serverTimezone=GMT%2B8
+     username: root
+     password: 123456
+     maximum-pool-size: 20
+     pool-name: slave
+     connection-timeout: 30000
+     idle-timeout: 600000
+     max-lifetime: 1765000
+#     read-only: true
