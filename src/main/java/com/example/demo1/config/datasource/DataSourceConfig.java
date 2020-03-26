@@ -1,4 +1,4 @@
-package com.example.demo1.config;
+package com.example.demo1.config.datasource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,8 +26,8 @@ public class DataSourceConfig {
     public DataSource dataSource() {
         //按照目标数据源名称和目标数据源对象的映射存放在Map中
         Map<Object, Object> targetDataSources = new HashMap<>(10);
-        targetDataSources.put("master", properties.getMaster());
-        targetDataSources.put("slave", properties.getSlave());
+        targetDataSources.put(DataSourceEnum.MASTER.getDbName(), properties.getMaster());
+        targetDataSources.put(DataSourceEnum.SLAVE.getDbName(), properties.getSlave());
         //采用是想AbstractRoutingDataSource的对象包装多数据源
         DynamicDataSource dataSource = new DynamicDataSource();
         dataSource.setTargetDataSources(targetDataSources);

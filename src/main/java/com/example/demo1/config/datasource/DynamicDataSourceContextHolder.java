@@ -1,4 +1,4 @@
-package com.example.demo1.config;
+package com.example.demo1.config.datasource;
 
 import java.util.ArrayList;
 import java.util.List;

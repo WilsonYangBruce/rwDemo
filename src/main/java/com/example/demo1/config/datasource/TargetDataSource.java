@@ -1,4 +1,4 @@
-package com.example.demo1.config;
+package com.example.demo1.config.datasource;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -13,5 +13,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface TargetDataSource {
-    String value();//此处接收的是数据源的名称
+    DataSourceEnum value();//此处接收的是数据源的名称
 }

@@ -1,4 +1,4 @@
-package com.example.demo1.config;
+package com.example.demo1.config.datasource;
 
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.slf4j.Slf4j;

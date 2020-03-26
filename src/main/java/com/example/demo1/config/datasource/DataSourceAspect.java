@@ -1,4 +1,4 @@
-package com.example.demo1.config;
+package com.example.demo1.config.datasource;
 
 /**
  * @author :yangjie
@@ -30,7 +30,7 @@ public class DataSourceAspect {
 
     }*/
 
-    @Pointcut("@annotation(com.example.demo1.config.TargetDataSource)")
+    @Pointcut("@annotation(com.example.demo1.config.datasource.TargetDataSource)")
     public void dbPointCut() {
     }
 
@@ -42,15 +42,15 @@ public class DataSourceAspect {
             //如果方法上存在切换数据源的注解，则根据注解内容进行数据源切换
             if (method != null && method.isAnnotationPresent(TargetDataSource.class)) {
                 TargetDataSource targetDataSource = method.getAnnotation(TargetDataSource.class);
-                String dataSourceName = targetDataSource.value();
+                DataSourceEnum dataSourceEnum = targetDataSource.value();
                 //如果为null，就使用默认的数据源
-                if (StringUtils.isEmpty(dataSourceName)) {
-                    DynamicDataSourceContextHolder.setDataSourceType("master");
+                if (StringUtils.isEmpty(dataSourceEnum)) {
+                    DynamicDataSourceContextHolder.setDataSourceType(DataSourceEnum.MASTER.getDbName());
                 } else {
-                    DynamicDataSourceContextHolder.setDataSourceType(dataSourceName);
+                    DynamicDataSourceContextHolder.setDataSourceType(dataSourceEnum.getDbName());
                 }
                 log.debug("current thread " + Thread.currentThread().getName()
-                        + " 数据源为 " + dataSourceName + " to ThreadLocal");
+                        + " 数据源为 " + dataSourceEnum.getDbName() + " to ThreadLocal");
             } else {
                 log.debug("switch datasource fail,use default");
             }
